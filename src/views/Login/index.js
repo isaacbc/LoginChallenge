@@ -19,19 +19,18 @@ const validationSchema = Yup.object({
   });
 
 const Login = () => {
-
     const formik = useFormik({
         initialValues: {
           email: '',
-          password: '',
+          password: ''
         },
 
         validationSchema: validationSchema,
         onSubmit: (values) => {
             localStorage.setItem('user', JSON.stringify(values, null, 2));
-            alert("You're logged in!");
-        },
-      });
+            alert("You're logged in!")
+        }
+    });
 
     const useStyles = makeStyles((theme) => ({
         login: {
@@ -64,7 +63,8 @@ const Login = () => {
               marginTop: '54px'
         }
     }));
-    const classes = useStyles()
+
+    const classes = useStyles();
 
     return (
         <div className={classes.login}>
@@ -149,7 +149,7 @@ const Login = () => {
                 </Grid>
             </Container>
         </div>
-    );
+    )
 }
 
 export default Login;
