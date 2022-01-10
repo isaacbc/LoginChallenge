@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Grid, Box, Container, TextField, Typography, Button } from '@material-ui/core';
@@ -20,29 +20,18 @@ const validationSchema = Yup.object({
 
 const Login = () => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
     const formik = useFormik({
         initialValues: {
-          email: email,
-          password: password,
+          email: '',
+          password: '',
         },
 
         validationSchema: validationSchema,
         onSubmit: (values) => {
             localStorage.setItem('user', JSON.stringify(values, null, 2));
-            alert("You're log in!");
+            alert("You're logged in!");
         },
       });
-    
-      useEffect(() => {
-        const storedUser = JSON.parse(localStorage.getItem('user'));
-        if (storedUser) {
-          setEmail(storedUser.email);
-          setPassword(storedUser.password)
-        }
-      }, []);
 
     const useStyles = makeStyles((theme) => ({
         login: {
@@ -72,6 +61,7 @@ const Login = () => {
             [theme.breakpoints.down('sm')]: {
                 marginLeft: '15%',
               },
+              marginTop: '54px'
         }
     }));
     const classes = useStyles()
@@ -83,17 +73,15 @@ const Login = () => {
 
                     <Grid item xs={12} sm={12} md={6} lg={5}>
                         <Box className={classes.boxLogin}>
-
                             <form onSubmit={formik.handleSubmit}>
                                 <Grid
                                     container
                                     direction="row"
                                     justifyContent="center"
                                     alignItems="center"
-                                    spacing={2}>
-
-
-                                    <Grid item xs={11} sm={6} md={6} lg={6} sx={{marginTop: '54px'}} >
+                                    spacing={2}
+                                >
+                                    <Grid item xs={11} sm={6} md={6} lg={6}>
                                         <img src={logo} alt="Chimu Escape" className={classes.logoImage} />
                                     </Grid>
 
@@ -116,7 +104,8 @@ const Login = () => {
                                             error={formik.touched.email && Boolean(formik.errors.email)}
                                             helperText={formik.touched.email && formik.errors.email}
                                             placeholder="nome@email.com"
-                                            variant="outlined"/>
+                                            variant="outlined"
+                                        />
                                     
                                     </Grid>
 
@@ -139,16 +128,20 @@ const Login = () => {
                                             error={formik.touched.password && Boolean(formik.errors.password)}
                                             helperText={formik.touched.password && formik.errors.password}
                                             placeholder="topsecret"
-                                            variant="outlined"/>
+                                            variant="outlined"
+                                        />
                                     </Grid>
 
                                     <Grid item xs={8} sm={6} md={4} lg={4} >
-                                        <Button color="primary" variant="contained" type="submit" 
-                                            sx={{padding: '12px 0', width:'100%', marginTop: '54px'}}>
+                                        <Button
+                                            color="primary" variant="contained" type="submit" 
+                                            sx={{padding: '12px 0',
+                                                width:'100%',
+                                                marginTop: '54px'}}
+                                        >
                                             Log in
                                         </Button>
                                     </Grid>
-
                                 </Grid>
                             </form>
                         </Box>
