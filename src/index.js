@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core';
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import Login from 'views/Login';
+import "./index.css";
 
 const Theme = responsiveFontSizes(createTheme({
   palette: {
@@ -15,7 +16,8 @@ const Theme = responsiveFontSizes(createTheme({
   },
   shape: {
     borderRadius: 8
-  }
+  },
+  
 }))
 
 ReactDOM.render(
